@@ -1,12 +1,20 @@
 package org.example;
 
-import java.util.List;
+import java.util.*;
 
 public class Supplier implements Runnable{
-
-    public static void main(String[] args) {
+    private static final List<String> ingredients = List.of("Rice", "Nori", "Filling");
+    private Random random = new Random();
+    public Supplier(){
 
     }
+
+    public List<String> selectIngredients(){
+        List<String> tempIngredients = new ArrayList<>(ingredients);
+        tempIngredients.remove(random.nextInt(tempIngredients.size()));
+        return tempIngredients;
+    }
+
     public void run() {
 
     }
