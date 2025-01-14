@@ -19,12 +19,19 @@ public class Supplier implements Runnable{
     }
 
     public void run() {
-
         while (index < 20) {
+            ArrayList<String> list = selectIngredients();
+
             if (counter.isEmpty()) {
-                ArrayList<String> list = selectIngredients();
                 counter.putIngredients(list);
+                System.out.println("Supplier placing on counter: " + list);
                 index++;
+            }
+
+            try {
+                Thread.sleep(5000);  // Simulate time to make a roll
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
         }
     }

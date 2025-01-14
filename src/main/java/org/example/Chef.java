@@ -14,16 +14,16 @@ public class Chef implements Runnable {
     }
 
     public boolean hasIngredient(List<String> ingredient){
-        return !ingredient.contains(this.ingredient);
+        return ingredient.contains(this.ingredient);
     }
 
     public void run() {
         String chef = Thread.currentThread().getName();
         System.out.println(chef + " checking counter");
         ArrayList<String> ingredientsOnCounter = counter.getIngredients();
-        System.out.println("Found " + ingredientsOnCounter);
+//        System.out.println("Found " + ingredientsOnCounter);
 
-        if (hasIngredient(ingredientsOnCounter)){
+        if (!hasIngredient(ingredientsOnCounter)){
             System.out.println("Chef [" + chef + "] is getting ingredients and forming sushi roll");
             try {
                 Thread.sleep(1000);  // Simulate time to make a roll

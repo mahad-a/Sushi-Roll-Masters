@@ -16,7 +16,7 @@ public class Counter {
     }
 
     public synchronized ArrayList<String> getIngredients() {
-        while (isEmpty) {
+        while (ingredients.isEmpty()) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -24,23 +24,22 @@ public class Counter {
             }
         }
         ArrayList<String> gotIngredients = new ArrayList<>(this.ingredients);
-        this.ingredients = new ArrayList<>();
-        isEmpty = true;
+        this.ingredients.clear();
+//        isEmpty = true;
         notifyAll();
         return gotIngredients;
     }
 
     public synchronized void putIngredients(ArrayList<String> addIngredients){
-        while (!isEmpty) {
+        while (!ingredients.isEmpty()) {
             try {
                 wait();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         }
-        this.ingredients = new ArrayList<>(addIngredients);
-        isEmpty = false;
-//        System.out.println("Supplier added: " + ingredients);
+        this.ingredients = addIngredients;
+//        isEmpty = false;
         notifyAll();
     }
 }
