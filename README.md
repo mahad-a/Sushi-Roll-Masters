@@ -3,8 +3,9 @@
 ## Table of Contents
 1. [Overivew](#overview)
 2. [Structure](#structure)
-3. [Documentation](#documentation)
-4. [Contact Information](#contact-information)
+3. [Setup Guide](#setup-guide)
+4. [Documentation](#documentation)
+5. [Contact Information](#contact-information)
 
 ## Overview
 Consider a system with three sushi chef threads and one resource agent (supplier) thread.
@@ -18,6 +19,7 @@ of the ingredients and places them on a counter.
 The chef who has the third ingredient completes the sushi roll and serves a plate of sushi, signalling
 the agent (supplier) upon completion. The agent (supplier) then puts out another two of the three
 ingredients, and the cycle repeats.
+
 ## Structure
 ### Agent.java
 - Represents the Agent(supplier), responsible for selecting ingredients at random and placing on the counter
@@ -31,7 +33,7 @@ ingredients, and the cycle repeats.
 - Handles the creation and running of all threads
 
 ## Setup Guide
-
+TODO
 
 ## Documentation
 Below you can find a UML sequence diagram and a UML class diagram of the system
