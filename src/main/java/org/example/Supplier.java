@@ -19,13 +19,12 @@ public class Supplier implements Runnable{
     }
 
     public void run() {
-        while (index < 20) {
+        while (!counter.maxRollsReached(20)) {
             ArrayList<String> list = selectIngredients();
 
             if (counter.isEmpty()) {
                 counter.putIngredients(list);
                 System.out.println("Supplier placing on counter: " + list);
-                index++;
             }
 
             try {

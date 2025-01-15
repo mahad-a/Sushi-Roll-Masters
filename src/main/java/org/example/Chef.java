@@ -19,20 +19,20 @@ public class Chef implements Runnable {
 
     public void run() {
         String chef = Thread.currentThread().getName();
-        System.out.println(chef + " checking counter");
-        ArrayList<String> ingredientsOnCounter = counter.getIngredients();
-//        System.out.println("Found " + ingredientsOnCounter);
+        while (!counter.maxRollsReached(20)) {
+            ArrayList<String> ingredientsOnCounter = counter.getIngredients();
 
-        if (!hasIngredient(ingredientsOnCounter)){
-            System.out.println("Chef [" + chef + "] is getting ingredients and forming sushi roll");
-            try {
-                Thread.sleep(1000);  // Simulate time to make a roll
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+            if (!hasIngredient(ingredientsOnCounter)) {
+                System.out.println("Chef [" + chef + "] is getting ingredients and forming sushi roll");
+                try {
+                    Thread.sleep(1000);  // Simulate time to make a roll
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                System.out.println("Chef [" + chef + "] has formed a sushi roll");
+                counter.incrementRollCounter();
+                counter.clearIngredients();
             }
-            System.out.println("Chef [" + chef + "] has formed a sushi roll");
-        } else {
-            System.out.println("Chef [" + chef + "] is waiting for missing ingredients");
         }
     }
 }

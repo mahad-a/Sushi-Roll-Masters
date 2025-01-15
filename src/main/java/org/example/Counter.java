@@ -5,14 +5,21 @@ import java.util.ArrayList;
 public class Counter {
     private boolean isEmpty;
     private ArrayList<String> ingredients;
+    private int rollCount;
 
     public Counter(){
         this.isEmpty = true;
         this.ingredients = new ArrayList<>();
+        this.rollCount = 0;
     }
 
     public boolean isEmpty() {
         return isEmpty;
+    }
+
+    public synchronized void clearIngredients(){
+        this.ingredients.clear();
+        isEmpty = true;
     }
 
     public synchronized ArrayList<String> getIngredients() {
@@ -24,14 +31,12 @@ public class Counter {
             }
         }
         ArrayList<String> gotIngredients = new ArrayList<>(this.ingredients);
-        this.ingredients.clear();
-//        isEmpty = true;
         notifyAll();
         return gotIngredients;
     }
 
     public synchronized void putIngredients(ArrayList<String> addIngredients){
-        while (!ingredients.isEmpty()) {
+        while (!ingredients.isEmpty() && rollCount < 20) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -39,7 +44,17 @@ public class Counter {
             }
         }
         this.ingredients = addIngredients;
-//        isEmpty = false;
         notifyAll();
+    }
+
+    public synchronized void incrementRollCounter(){
+        rollCount++;
+        if (rollCount >= 20){
+            notifyAll();
+        }
+    }
+
+    public synchronized boolean maxRollsReached(int maxValue){
+        return rollCount >= maxValue;
     }
 }
