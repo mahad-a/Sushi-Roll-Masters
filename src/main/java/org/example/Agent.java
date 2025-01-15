@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Agent (Agent) class
+ * Agent class, representing an agent, agent randomly generates 2 ingredients
+ * from a list of 3 then places them on the counter
  */
 public class Agent implements Runnable{
     private static final List<String> ingredients = List.of("Rice", "Nori", "Filling");
     private Random random = new Random();
     private Counter counter;
-    private int index = 0;
 
     /**
      * Agent constructor
