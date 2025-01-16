@@ -5,6 +5,8 @@
 2. [Structure](#structure)
 3. [Setup Guide](#setup-guide)
 4. [Documentation](#documentation)
+   1. [UML class diagram](#uml-class-diagram)
+   2. [UML sequence diagram](#uml-sequence-diagram)
 5. [Contact Information](#contact-information)
 
 ## Overview
@@ -37,9 +39,10 @@ TODO
 
 ## Documentation
 Below you can find a UML sequence diagram and a UML class diagram of the system
-
-FIGURE 1 
-FIGURE 2 
+### UML class diagram
+![UML class diagram](docs/UML_class_diagram.png)
+### UML sequence diagram
+![UML sequence diagram](docs/UML_sequence_diagram.png) 
 
 ## Contact Information
 Mahad Ahmed
