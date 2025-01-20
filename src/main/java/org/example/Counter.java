@@ -15,8 +15,8 @@ public class Counter {
      * Counter constructor
      */
     public Counter(){
-        this.isEmpty = true;
-        this.ingredients = new ArrayList<>();
+        this.isEmpty = true; // nothing on the counter
+        this.ingredients = new ArrayList<>(); // ingredients on the counter
         this.rollCount = 0; // no sushi rolls are made yet
     }
 
@@ -28,6 +28,10 @@ public class Counter {
         return isEmpty;
     }
 
+    /**
+     * Gets the current amount of sushi rolls made
+     * @return the amount of sushi rolls made
+     */
     public int getRollCount() {
         return rollCount;
     }
@@ -47,7 +51,7 @@ public class Counter {
     public synchronized ArrayList<String> getIngredients() {
         while (ingredients.isEmpty()) { // can't grab ingredients from an empty counter
             try {
-                wait();
+                wait(); // make thread wait until there is ingredients on the counter
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
@@ -65,7 +69,7 @@ public class Counter {
         // ensure that no ingredients are being placed once 20 sushi rolls are reached
         while (!ingredients.isEmpty() && rollCount < 20) { // prevent overwriting to the counter
             try {
-                wait();
+                wait(); // make thread wait until there is ingredients on the counter
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }

@@ -14,7 +14,7 @@ public class Chef implements Runnable {
 
     /**
      * Chef constructor
-     * @param ingredient the ingredient in which the chef has a infinite supply of
+     * @param ingredient the ingredient in which the chef has an infinite supply of
      * @param counter the counter where agent places list of the ingredients available for creation of sushi roll
      */
     public Chef(String ingredient, Counter counter){
@@ -40,13 +40,13 @@ public class Chef implements Runnable {
             ArrayList<String> ingredientsOnCounter = counter.getIngredients(); // gets the ingredients stored on the counter
 
             if (!hasIngredient(ingredientsOnCounter)) { // chef has the third missing ingredient for the sushi roll
-                System.out.println("Chef [" + chef + "] is getting ingredients and forming sushi roll"); // print statement to track it
+                System.out.println(chef + " is getting ingredients and forming sushi roll"); // print statement to track it
                 try {
                     Thread.sleep(1000); // sleep to simulate to making a sushi roll
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
-                System.out.println("Chef [" + chef + "] has formed a sushi roll");
+                System.out.println(chef + " has formed a sushi roll");
                 counter.incrementRollCounter(); // update the roll counter
                 System.out.println("Amount of sushi rolls made: " + counter.getRollCount());
                 counter.clearIngredients(); // clear the counter which signals the agent to provide new ingredients

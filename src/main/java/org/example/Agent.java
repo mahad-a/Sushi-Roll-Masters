@@ -40,13 +40,13 @@ public class Agent implements Runnable{
         while (!counter.maxRollsReached(20)) {
             ArrayList<String> list = selectIngredients();
 
-            if (counter.isEmpty()) {
+            if (counter.isEmpty()) { // check if the counter is empty before placing ingredients
                 counter.putIngredients(list);
                 System.out.println("Agent placing on counter: " + list);
-            }
+            } // counter has something on it, so sleep and check again
 
-            try {
-                Thread.sleep(3000); // sleep to simulate to making a sushi roll
+            try { // sleep while counter is occupied
+                Thread.sleep(3000); // check counter again after time
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
