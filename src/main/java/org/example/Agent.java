@@ -41,8 +41,8 @@ public class Agent implements Runnable{
             ArrayList<String> list = selectIngredients();
 
             if (counter.isEmpty()) { // check if the counter is empty before placing ingredients
-                counter.putIngredients(list);
                 System.out.println("Agent placing on counter: " + list);
+                counter.putIngredients(list);
             } // counter has something on it, so sleep and check again
 
             try { // sleep while counter is occupied
