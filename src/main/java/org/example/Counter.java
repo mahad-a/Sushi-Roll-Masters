@@ -49,7 +49,7 @@ public class Counter {
      * @return the ingredients found on the counter
      */
     public synchronized ArrayList<String> getIngredients() {
-        while (ingredients.isEmpty()) { // can't grab ingredients from an empty counter
+        while (ingredients.isEmpty() && rollCount < 20) { // can't grab ingredients from an empty counter
             try {
                 wait(); // make thread wait until there is ingredients on the counter
             } catch (InterruptedException e) {
@@ -82,10 +82,11 @@ public class Counter {
      * Increment the roll counter whenever a sushi roll is made
      */
     public synchronized void incrementRollCounter(){
-        rollCount++;
         if (rollCount >= 20){
             notifyAll(); // notify all threads that 20 rolls has been reached
+            return;
         }
+        rollCount++;
     }
 
     /**
